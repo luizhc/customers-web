@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "businessKey": "123",
+        "name": "Luiz Henrique",
+        "birthday": "01/01/0001",
+        "email": "luiz@email.com",
+        "phone": "(99) 9 9999-9999",
+        "cpf": "999.999.999-99",
+        "rg": "99.999.999-9",
+        "gender": "M",
+        "address": {
+            "zipCode": "83.707-350",
+            "street": "Rua Michel Nahum Saliba",
+            "complement": "Casa Verde",
+            "number": 230,
+            "neighborhood": "Thomaz Coelho",
+            "city": "Araucária",
+            "state": "PR",
+            "country": "Brasil"
+        },
+        "about": ""
+    }
+]
