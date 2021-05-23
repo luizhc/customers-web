@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { MessageService } from './message.service';
 
@@ -11,10 +12,15 @@ export class UtilsService {
 
   constructor(
     private _message: MessageService,
-    private _http: HttpClient
+    private _http: HttpClient,
+    private _router: Router
   ) { }
 
-  markAllFieldsAsDirty = (formGroup: FormGroup) => {
+  navigateTo = (route: string) => {
+    this._router.navigateByUrl(route);
+  }
+
+  markAllFieldsAsDirty(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
       control?.markAsDirty();

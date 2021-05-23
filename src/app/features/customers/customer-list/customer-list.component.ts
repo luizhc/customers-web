@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CustomerService } from 'src/app/services/customer.service';
+import { CustomerService } from '../../../services/customer.service';
+import { MessageService } from '../../../services/message.service';
 import { Customer } from './../../../models/customer.model';
 
 @Component({
   selector: 'app-customer-list',
-  templateUrl: '../customer-list/customer-list.component.html',
-  styleUrls: ['../customer-list/customer-list.component.scss']
+  templateUrl: './customer-list.component.html',
+  styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
 
@@ -15,6 +16,7 @@ export class CustomerListComponent implements OnInit {
 
   constructor(
     private _customer: CustomerService,
+    private _message: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -37,12 +39,9 @@ export class CustomerListComponent implements OnInit {
 
   }
 
-  edit(id: number) {
-
-  }
-
-  delete(id: number) {
-
+  delete(customer: Customer) {
+    this._message.confirmBox(customer.name, `Cliente <b>${customer.name}</b>`)
+      .then(res => res ? this._customer.delete(customer.id) : null);
   }
 
 }

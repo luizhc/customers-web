@@ -14,9 +14,9 @@ export class MessageService {
     Swal.fire(title, message, type);
   }
 
-  async confirmBox(message: string): Promise<boolean> {
+  async confirmBox(register: string, message: string): Promise<boolean> {
     const result = await Swal.fire({
-      title: 'Tem certeza que deseja remover?',
+      title: `Tem certeza que deseja remover ${register}?`,
       text: 'Você não poderá mais recuperar este registro!',
       icon: 'warning',
       showCancelButton: true,

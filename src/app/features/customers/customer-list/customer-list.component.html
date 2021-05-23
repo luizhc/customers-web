@@ -1,37 +1,38 @@
-<div class="container col-11 p-5">
-  <div class="shadow-lg p-3 rounded">
+<div class="container">
+  <div class="shadow-lg p-3 mb-5 rounded">
     <div class="card-body">
 
-      <h1 class="card-title">
-        <img src="assets/customers.svg" alt="Clientes">
-        Clientes
-      </h1>
-
-      <p>Listagem de clientes cadastrados no sistema...</p>
+      <div class="card-title">
+        <h2>
+          <img src="assets/img/customers.svg" alt="Clientes">
+          Clientes
+        </h2>
+        <p>Visualize todos os seus clientes cadastrados...</p>
+      </div>
 
       <div class="d-flex justify-content-between mb-4">
         <button [routerLink]="'/'" type="button" class="btn btn-secondary float-left" data-toggle="tooltip"
           data-placement="top" title="Voltar">
-          <img src="assets/back.svg" alt="Voltar">
+          <img src="assets/img/back.svg" alt="Voltar">
           Voltar
         </button>
         <button [routerLink]="'/clientes/detalhe'" type="button" class="btn btn-success float-end" data-toggle="tooltip"
           data-placement="top" title="Cadastrar">
-          <img src="assets/add.svg" alt="Cadastrar">
+          <img src="assets/img/add.svg" alt="Cadastrar">
           Cadastrar
         </button>
       </div>
 
       <div class="d-flex justify-content-end mb-4">
         <div class="btn-group col-xs-12 col-sm-12 col-md-6 col-xl-4">
-          <input #search type="text" class="form-control" placeholder="Pesquisar por chave de negócio...">
+          <input #search type="text" class="form-control" placeholder="Pesquisar pela chave de negócio...">
           <button (click)="getByBusinessKey()" type="button" class="btn btn-primary" data-toggle="tooltip"
             data-placement="top" title="Pesquisar">
-            <img src="assets/search.svg" alt="Pesquisar">
+            <img src="assets/img/search.svg" alt="Pesquisar">
           </button>
           <button (click)="getCustomers()" type="button" class="btn btn-primary" data-toggle="tooltip"
             data-placement="top" title="Limpar">
-            <img src="assets/clear.svg" alt="Limpar">
+            <img src="assets/img/clear.svg" alt="Limpar">
           </button>
         </div>
       </div>
@@ -62,13 +63,13 @@
               <td>{{ customer.address.city }} / {{ customer.address.state }}</td>
               <td class="text-center">
                 <div class="btn-group">
-                  <button (click)="edit(customer.id)" type="button" class="btn btn-warning" data-toggle="tooltip"
-                    data-placement="top" title="Editar">
-                    <img src="assets/edit.svg" alt="Editar">
+                  <button [routerLink]="['/clientes/detalhe', customer.id]" type="button" class="btn btn-warning"
+                    data-toggle="tooltip" data-placement="top" title="Editar">
+                    <img src="assets/img/edit.svg" alt="Editar">
                   </button>
-                  <button (click)="delete(customer.id)" type="button" class="btn btn-danger" data-toggle="tooltip"
+                  <button (click)="delete(customer)" type="button" class="btn btn-danger" data-toggle="tooltip"
                     data-placement="top" title="Excluir">
-                    <img src="assets/delete.svg" alt="Excluir">
+                    <img src="assets/img/delete.svg" alt="Excluir">
                   </button>
                 </div>
               </td>

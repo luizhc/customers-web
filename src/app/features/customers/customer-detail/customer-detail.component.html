@@ -1,0 +1,177 @@
+<div class="container">
+  <div class="shadow-lg p-3 mb-5 rounded">
+    <div class="card-body">
+
+      <div class="card-title">
+        <h2>
+          <img src="assets/img/avatar.svg" alt="Cliente">
+          Cliente
+        </h2>
+        <p>Crie ou gerencie seu cliente...</p>
+      </div>
+
+      <button [routerLink]="'/clientes'" type="button" class="btn btn-secondary mb-4" data-toggle="tooltip"
+        data-placement="top" title="Voltar">
+        <img src="assets/img/back.svg" alt="Voltar">
+        Voltar
+      </button>
+
+      <form [formGroup]="form" (submit)="save()">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-4 col-xl-2">
+            <div class="form-group">
+              <label>Chave de Negócio</label>
+              <input type="number" class="form-control" formControlName="businessKey" placeholder="Digite a chave...">
+            </div>
+            <app-message-control-error [control]="form.get('businessKey')" error="required"
+              msg="Chave de negócio é obrigatório.">
+            </app-message-control-error>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-8 col-xl-4">
+            <div class="form-group">
+              <label>Nome completo</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="Digite o nome completo...">
+            </div>
+            <app-message-control-error [control]="form.get('name')" error="required" msg="Nome completo é obrigatório.">
+            </app-message-control-error>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+              <label>Data de nascimento</label>
+              <input type="date" class="form-control" formControlName="birthday" [max]="today"
+                (input)="validatorBirthday('birthday', $event)">
+            </div>
+            <app-message-control-error [control]="form.get('birthday')" error="dateGreaterToday"
+              msg="Data é maior que hoje."></app-message-control-error>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+              <label>Gênero</label>
+              <select class="form-select" formControlName="gender">
+                <option value="">Selecione...</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+                <option value="O">Outro</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+              <label>RG</label>
+              <input (input)="maskRG($event)" type="text" class="form-control" formControlName="rg"
+                placeholder="Digite o nome RG..." maxlength="12">
+            </div>
+            <app-message-control-error [control]="form.get('rg')" error="required" msg="RG é obrigatório.">
+            </app-message-control-error>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+              <label>CPF</label>
+              <input (input)="maskCPF($event)" type="text" class="form-control" formControlName="cpf"
+                placeholder="Digite o CPF..." maxlength="14">
+            </div>
+            <app-message-control-error [control]="form.get('cpf')" error="required" msg="CPF é obrigatório.">
+            </app-message-control-error>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="text" class="form-control" formControlName="email" placeholder="Digite o e-mail...">
+            </div>
+            <app-message-control-error [control]="form.get('email')" error="required" msg="E-mail é obrigatório.">
+            </app-message-control-error>
+            <app-message-control-error [control]="form.get('email')" error="email" msg="E-mail inválido.">
+            </app-message-control-error>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+              <label>Celular</label>
+              <input (input)="maskCellPhone($event)" type="text" class="form-control" formControlName="phone"
+                placeholder="Digite o celular..." maxlength="15">
+            </div>
+            <app-message-control-error [control]="form.get('phone')" error="required" msg="Celular é obrigatório.">
+            </app-message-control-error>
+          </div>
+        </div>
+        <div formGroupName="address">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-5 col-xl-3">
+              <div class="form-group">
+                <label>CEP</label>
+                <input (input)="maskCEP($event)" type="text" maxlength="10" class="form-control"
+                  formControlName="zipCode" (blur)="queryCEP()" placeholder="Digite o CEP...">
+              </div>
+              <app-message-control-error [control]="form.get('address.zipCode')" error="required"
+                msg="CEP é obrigatório.">
+              </app-message-control-error>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-7 col-xl-6">
+              <div class="form-group">
+                <label>Endereço</label>
+                <input type="text" class="form-control" formControlName="street">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-xl-3">
+              <div class="form-group">
+                <label>Número</label>
+                <input #addressNumber type="number" class="form-control" formControlName="number"
+                  placeholder="Digite o número...">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-xl-3">
+              <div class="form-group">
+                <label>Complemento</label>
+                <input type="text" class="form-control" formControlName="complement">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-7 col-xl-3">
+              <div class="form-group">
+                <label>Bairro</label>
+                <input type="text" class="form-control" formControlName="neighborhood">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5 col-xl-2">
+              <div class="form-group">
+                <label>Estado</label>
+                <input type="text" class="form-control" formControlName="state">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-7 col-xl-2">
+              <div class="form-group">
+                <label>Cidade</label>
+                <input type="text" class="form-control" formControlName="city">
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5 col-xl-2">
+              <div class="form-group">
+                <label>País</label>
+                <input type="text" class="form-control" formControlName="country">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label>Sobre</label>
+              <textarea rows="4" class="form-control"
+                placeholder="Aqui você pode colocar algumas observações sobre o cliente..."
+                formControlName="about"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <button [routerLink]="'/clientes/detalhe'" type="submit" class="btn btn-success" data-toggle="tooltip"
+            data-placement="top" title="Cadastrar">
+            <img src="assets/img/save.svg" alt="Salvar">
+            {{ buttonSave }}
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

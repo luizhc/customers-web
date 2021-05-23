@@ -18,15 +18,19 @@ export class CustomerService {
     return this._http.get<Customer[]>("assets/json/customers.json");
   }
 
+  getById(id: number) {
+    // return this._http.get(this.uri, id);
+  }
+
   getByBusinessKey(businessKey: number) {
     // return this._http.get(this.uri, businessKey);
   }
 
   create(customer: Customer) {
-    // return this._http.post(this.uri, customer);
+    return this._http.post(this.uri, customer);
   }
 
-  update(customer: Customer) {
+  update(id: number, customer: Customer) {
     // return this._http.put(this.uri, customer);
   }
 
