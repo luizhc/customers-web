@@ -61,7 +61,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   delete(customer: Customer) {
-    this._message.confirmBox(customer.name, `Cliente < b > ${customer.name} < /b>`)
+    this._message.confirmBox(customer.name, `Cliente <strong>${customer.name}</strong>`)
       .then(res => res ? this._customer.delete(customer._id).subscribe(() => this.getCustomers()) : null);
   }
 
