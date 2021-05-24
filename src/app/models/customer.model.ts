@@ -1,7 +1,7 @@
 import { Address } from './address.model';
 
 export class Customer {
-    id!: number;
+    _id!: string;
     businessKey!: string;
     name!: string;
     birthday!: Date;

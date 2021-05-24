@@ -25,7 +25,7 @@
 
       <div class="d-flex justify-content-end mb-4">
         <div class="btn-group col-xs-12 col-sm-12 col-md-6 col-xl-4">
-          <input #search type="text" class="form-control" placeholder="Pesquisar pela chave de negócio...">
+          <input #search type="number" class="form-control" placeholder="Pesquisar pela chave de negócio...">
           <button (click)="getByBusinessKey()" type="button" class="btn btn-primary" data-toggle="tooltip"
             data-placement="top" title="Pesquisar">
             <img src="assets/img/search.svg" alt="Pesquisar">
@@ -38,11 +38,6 @@
       </div>
 
       <div class="table-responsive">
-        <div *ngIf="loading" class="d-flex justify-content-center">
-          <div class="spinner-border text-secondary" role="status">
-            <span class="sr-only">Carregando...</span>
-          </div>
-        </div>
         <table class="table table-hover table-bordered">
           <thead class="table-light">
             <tr>
@@ -63,7 +58,7 @@
               <td>{{ customer.address.city }} / {{ customer.address.state }}</td>
               <td class="text-center">
                 <div class="btn-group">
-                  <button [routerLink]="['/clientes/detalhe', customer.id]" type="button" class="btn btn-warning"
+                  <button [routerLink]="['/clientes/detalhe', customer._id]" type="button" class="btn btn-warning"
                     data-toggle="tooltip" data-placement="top" title="Editar">
                     <img src="assets/img/edit.svg" alt="Editar">
                   </button>
@@ -76,6 +71,10 @@
             </tr>
           </tbody>
         </table>
+        <div *ngIf="loading" class="d-flex justify-content-center">
+          <div class="spinner-border text-secondary" role="status"></div>
+        </div>
+        <div *ngIf="customers?.length == 0 && !loading" class="text-center">Nenhum cliente encontrado!</div>
       </div>
 
     </div>

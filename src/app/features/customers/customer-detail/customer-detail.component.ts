@@ -34,7 +34,7 @@ export class CustomerDetailComponent implements OnInit {
 
   buildForm() {
     this.form = this._fb.group({
-      id: new FormControl({ value: null, disabled: false }),
+      _id: new FormControl({ value: null, disabled: false }),
       businessKey: ['', Validators.required],
       name: ['', Validators.required],
       birthday: [''],
@@ -59,37 +59,48 @@ export class CustomerDetailComponent implements OnInit {
 
   checkOperation() {
     this.loading = true;
-    const id = this._route.snapshot.paramMap.get('id');
-    if (id) {
+    const _id = this._route.snapshot.paramMap.get('id');
+    if (_id) {
       this.buttonSave = 'Atualizar';
-      this._customer.getById(parseInt(id))
-      // .subscribe(
-      //   res => {
-      //     this.form.patchValue(res);
-      //     this.loading = false;
-      //   },
-      //   error => {
-      //     this.loading = false;
-      //   }
-      // );
+      this._customer.findById(_id)
+        .subscribe(
+          res => {
+            this.form.patchValue(res);
+            this.loading = false;
+          },
+          () => {
+            this.loading = false;
+            this._message.alertWithIcon('Atenção!', 'Houve um problema na requisição, tente novamnete!', 'error');
+          }
+        );
     }
   }
 
   save() {
     if (this.form.valid) {
-      if (this.form.get('id')?.value) {
-        this._customer.update(this.form.get('id')?.value, this.form.value)
-        // .then(_ => {
-        //   this._message.alertWithIcon('Parabéns!', 'Cliente atualizado com sucesso.', 'success');
-        // this._utils.navigateTo('clientes');
-        // });
+      if (this.form.get('_id')?.value) {
+        this._customer.update(this.form.get('_id')?.value, this.form.value)
+          .subscribe(
+            res => {
+              this._message.alertWithIcon('Parabéns!', `Cliente <strong>${res.name}</strong> atualizado com sucesso.`, 'success');
+              this._utils.navigateTo('clientes');
+            },
+            () => {
+              this._message.alertWithIcon('Atenção!', 'Houve um problema na requisição, tente novamnete!', 'error');
+            }
+          );
       } else {
-        this.form.removeControl('id');
+        this.form.removeControl('_id');
         this._customer.create(this.form.value)
-        // .then(_ => {
-        //   this._message.alertWithIcon('Parabéns!', 'Cliente cadastrado com sucesso.', 'success');
-        //   this._utils.navigateTo('clientes');
-        // })
+          .subscribe(
+            res => {
+              this._message.alertWithIcon('Parabéns!', `Cliente <strong>${res.name}</strong> cadastrado com sucesso.`, 'success');
+              this._utils.navigateTo('clientes');
+            },
+            () => {
+              this._message.alertWithIcon('Atenção!', 'Houve um problema na requisição, tente novamnete!', 'error');
+            }
+          );
       }
     } else {
       this._utils.markAllFieldsAsDirty(this.form);
@@ -102,15 +113,17 @@ export class CustomerDetailComponent implements OnInit {
     const cep = this.form.get('address.zipCode')?.value;
     if (cep) {
       this._utils.queryCEP(cep)
-        .subscribe(data => {
-          if (data.erro) {
-            this._message.alertWithIcon('Atenção!', 'CEP não encontrado.', 'warning');
-          } else {
-            this.setAddressForm(data);
+        .subscribe(
+          data => {
+            if (data.erro) {
+              this._message.alertWithIcon('Atenção!', 'CEP não encontrado.', 'warning');
+            } else {
+              this.setAddressForm(data);
+            }
+          }, error => {
+            this._message.alertWithIcon('Atenção!', `Houve um erro na requisição! ==> ${error}`, 'error');
           }
-        }, error => {
-          this._message.alertWithIcon('Atenção!', `Houve um erro na requisição! ==> ${error}`, 'error');
-        });
+        );
     } else {
       this._message.alertWithIcon('Atenção!', 'CEP inválido.', 'warning');
     }

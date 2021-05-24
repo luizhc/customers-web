@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.prod';
 import { Customer } from './../models/customer.model';
 
 @Injectable({
@@ -8,34 +9,30 @@ import { Customer } from './../models/customer.model';
 })
 export class CustomerService {
 
-  uri = "localhost:8080";
+  constructor(private _http: HttpClient) { }
 
-  constructor(
-    private _http: HttpClient
-  ) { }
-
-  getAll(): Observable<Customer[]> {
-    return this._http.get<Customer[]>("assets/json/customers.json");
+  findAll(): Observable<Customer[]> {
+    return this._http.get<Customer[]>(environment.BACKEND_URL);
   }
 
-  getById(id: number) {
-    // return this._http.get(this.uri, id);
+  findById(_id: string): Observable<Customer> {
+    return this._http.get<Customer>(environment.BACKEND_URL + _id);
   }
 
-  getByBusinessKey(businessKey: number) {
-    // return this._http.get(this.uri, businessKey);
+  findByBusinessKey(businessKey: string): Observable<Customer[]> {
+    return this._http.get<Customer[]>(`${environment.BACKEND_URL}businessKey/` + businessKey);
   }
 
-  create(customer: Customer) {
-    return this._http.post(this.uri, customer);
+  create(customer: Customer): Observable<Customer> {
+    return this._http.post<Customer>(environment.BACKEND_URL, customer);
   }
 
-  update(id: number, customer: Customer) {
-    // return this._http.put(this.uri, customer);
+  update(_id: string, customer: Customer): Observable<Customer> {
+    return this._http.put<Customer>(environment.BACKEND_URL + _id, customer);
   }
 
-  delete(id: number) {
-    // return this._http.delete(this.uri, id);
+  delete(_id: string) {
+    return this._http.delete<Customer>(environment.BACKEND_URL + _id);
   }
 
 }

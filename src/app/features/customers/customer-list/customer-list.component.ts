@@ -24,24 +24,45 @@ export class CustomerListComponent implements OnInit {
   }
 
   getCustomers() {
-    setTimeout(() => this.search.nativeElement.focus(), 100);
+    this.customers = [];
     this.loading = true;
-    this._customer.getAll()
+    setTimeout(() => {
+      this.search.nativeElement.value = '';
+      this.search.nativeElement.focus();
+    }, 100);
+    this._customer.findAll()
       .subscribe(
         res => {
           this.customers = res;
           this.loading = false;
+        },
+        () => {
+          this.loading = false;
+          this._message.alertWithIcon('Atenção!', 'Houve um problema na requisição, tente novamnete!', 'error');
         }
       );
   }
 
   getByBusinessKey() {
-
+    this.customers = [];
+    this.loading = true;
+    setTimeout(() => this.search.nativeElement.focus(), 100);
+    this._customer.findByBusinessKey(this.search.nativeElement.value)
+      .subscribe(
+        res => {
+          this.customers = res;
+          this.loading = false;
+        },
+        () => {
+          this.loading = false;
+          this._message.alertWithIcon('Atenção!', 'Houve um problema na requisição, tente novamnete!', 'error');
+        }
+      );
   }
 
   delete(customer: Customer) {
-    this._message.confirmBox(customer.name, `Cliente <b>${customer.name}</b>`)
-      .then(res => res ? this._customer.delete(customer.id) : null);
+    this._message.confirmBox(customer.name, `Cliente < b > ${customer.name} < /b>`)
+      .then(res => res ? this._customer.delete(customer._id).subscribe(() => this.getCustomers()) : null);
   }
 
 }

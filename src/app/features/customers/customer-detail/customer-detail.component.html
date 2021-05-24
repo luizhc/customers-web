@@ -48,7 +48,7 @@
             <div class="form-group">
               <label>Gênero</label>
               <select class="form-select" formControlName="gender">
-                <option value="">Selecione...</option>
+                <option value="">Selecione o gênero...</option>
                 <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
                 <option value="O">Outro</option>
@@ -61,7 +61,7 @@
             <div class="form-group">
               <label>RG</label>
               <input (input)="maskRG($event)" type="text" class="form-control" formControlName="rg"
-                placeholder="Digite o nome RG..." maxlength="12">
+                placeholder="Digite o RG..." maxlength="12">
             </div>
             <app-message-control-error [control]="form.get('rg')" error="required" msg="RG é obrigatório.">
             </app-message-control-error>
@@ -164,8 +164,7 @@
         </div>
 
         <div class="d-flex justify-content-end mt-4">
-          <button [routerLink]="'/clientes/detalhe'" type="submit" class="btn btn-success" data-toggle="tooltip"
-            data-placement="top" title="Cadastrar">
+          <button type="submit" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Salvar">
             <img src="assets/img/save.svg" alt="Salvar">
             {{ buttonSave }}
           </button>
