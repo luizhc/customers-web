@@ -1,27 +1,31 @@
-# Customers
+# 💻 Aplicação Front-End para gerenciamento de clientes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.0.
+⚡ Tecnologias utilizadas no desenvolvimento:
 
-## Development server
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🚀 Framework [Angular](http://angular.io/) v11.1.0
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🤖 Utilizando a linguagem [Typescript](https://www.typescriptlang.org/) v4.1.2
 
-## Code scaffolding
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎨 Biblioteca de estilos [Bootstrap](https://getbootstrap.com/) v5.0.1
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💼 Hospedagem na [Vercel](https://vercel.com/)
 
-## Build
+🌎 Link da aplicação: https://customers-web.vercel.app
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+👨‍🚀 Para visualizar o Back-End [clique aqui](https://github.com/luizhc/customers-api)
 
-## Running unit tests
+## Instalação
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+É necessário os seguintes programas instalados:
 
-## Running end-to-end tests
+- Ferramenta para controle de versão [Git](https://git-scm.com/) para clone da aplicação;
+- Gerenciador de pacotes [NPM](https://www.npmjs.com/) para instalação das dependências;
+- Interpretador [Node.js](https://nodejs.org/) para rodar a aplicação;
+- Editor de código-fonte, sugiro o [VS Code](https://code.visualstudio.com/).
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Configuração / Inicialização
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Após clonar o projeto em seu computador com o comando `git clone https://github.com/luizhc/customers-web.git`;
+- Vá até a pasta do projeto e instale as depêndencias com o comando `npm install`;
+- Execute o projeto com o comando `ng serve`;
+- Abra seu browser em `http://localhost:4200`.
