@@ -30,7 +30,7 @@ export class MessageService {
       Swal.fire('Excluído', `${message} excluído com sucesso.`, 'success');
       return true;
     } else if (result.dismiss === Swal.DismissReason.cancel) {
-      Swal.fire('Cancelado', `${message} mantido com sucesso.`, 'error');
+      Swal.fire('Cancelado', `${message} mantido com sucesso.`, 'success');
     }
     return false;
   }
