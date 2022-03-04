@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
-import { VisitService } from 'src/app/services/visit.service';
+import { VisitService } from '../../services/visit.service';
 
 @Component({
   selector: 'Footer',

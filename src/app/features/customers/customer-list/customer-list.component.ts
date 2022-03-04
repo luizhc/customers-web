@@ -38,7 +38,7 @@ export class CustomerListComponent implements OnInit {
         this.loading = false;
         this._message.alertWithIcon(
           'Atenção!',
-          'Houve um problema na requisição, tente novamnete!',
+          'Houve um problema na requisição, tente novamente!',
           'error'
         );
       }
@@ -58,7 +58,7 @@ export class CustomerListComponent implements OnInit {
         this.loading = false;
         this._message.alertWithIcon(
           'Atenção!',
-          'Houve um problema na requisição, tente novamnete!',
+          'Houve um problema na requisição, tente novamente!',
           'error'
         );
       }

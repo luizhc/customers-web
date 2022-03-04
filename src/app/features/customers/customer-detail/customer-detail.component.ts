@@ -75,7 +75,7 @@ export class CustomerDetailComponent implements OnInit {
           this.loading = false;
           this._message.alertWithIcon(
             'Atenção!',
-            'Houve um problema na requisição, tente novamnete!',
+            'Houve um problema na requisição, tente novamente!',
             'error'
           );
         }
@@ -100,7 +100,7 @@ export class CustomerDetailComponent implements OnInit {
             () => {
               this._message.alertWithIcon(
                 'Atenção!',
-                'Houve um problema na requisição, tente novamnete!',
+                'Houve um problema na requisição, tente novamente!',
                 'error'
               );
             }
@@ -119,7 +119,7 @@ export class CustomerDetailComponent implements OnInit {
           () => {
             this._message.alertWithIcon(
               'Atenção!',
-              'Houve um problema na requisição, tente novamnete!',
+              'Houve um problema na requisição, tente novamente!',
               'error'
             );
           }
