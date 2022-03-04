@@ -6,29 +6,32 @@ import { of } from 'rxjs';
 import { MessageService } from './message.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UtilsService {
-
   constructor(
     private _message: MessageService,
     private _http: HttpClient,
     private _router: Router
-  ) { }
+  ) {}
 
   navigateTo = (route: string) => {
     this._router.navigateByUrl(route);
-  }
+  };
 
   markAllFieldsAsDirty(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
+    Object.keys(formGroup.controls).forEach((field) => {
       const control = formGroup.get(field);
       control?.markAsDirty();
       if (control instanceof FormGroup) {
         this.markAllFieldsAsDirty(control);
       }
     });
-    this._message.alertWithIcon('Atenção!', 'Existem campos obrigatórios não preenchidos ou incorretos.', 'warning');
+    this._message.alertWithIcon(
+      'Atenção!',
+      'Existem campos obrigatórios não preenchidos ou incorretos.',
+      'warning'
+    );
   }
 
   queryCEP = (cep: string) => {
@@ -42,11 +45,11 @@ export class UtilsService {
         return this._http.get<any>(`https://viacep.com.br/ws/${cep}/json`);
       } else {
         this._message.alertWithIcon('Atenção!', 'CEP inválido.', 'warning');
-        return of({})
+        return of({});
       }
     }
-    return of({})
-  }
+    return of({});
+  };
 
   maskNumbers = (number: string) => {
     number = number.replace(/\D/g, '');
@@ -103,5 +106,4 @@ export class UtilsService {
     cellPhone = cellPhone.replace(/(\d{5})(\d)/, '$1-$2');
     return cellPhone;
   };
-
 }

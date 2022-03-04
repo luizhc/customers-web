@@ -5,11 +5,10 @@ import { environment } from '../../environments/environment.prod';
 import { Customer } from './../models/customer.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomerService {
-
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   findAll(): Observable<Customer[]> {
     return this._http.get<Customer[]>(environment.BACKEND_URL);
@@ -20,7 +19,9 @@ export class CustomerService {
   }
 
   findByBusinessKey(businessKey: string): Observable<Customer[]> {
-    return this._http.get<Customer[]>(`${environment.BACKEND_URL}businessKey/` + businessKey);
+    return this._http.get<Customer[]>(
+      `${environment.BACKEND_URL}businessKey/` + businessKey
+    );
   }
 
   create(customer: Customer): Observable<Customer> {
@@ -34,5 +35,4 @@ export class CustomerService {
   delete(_id: string) {
     return this._http.delete<Customer>(environment.BACKEND_URL + _id);
   }
-
 }
