@@ -1,6 +1,6 @@
-# 💻 Aplicação Front-End para gerenciamento de clientes
+# 💻 Aplicação Front-End
 
-⚡ Tecnologias utilizadas no desenvolvimento:
+## ⚡ Tecnologias Utilizadas
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🚀 Framework [Angular](http://angular.io/) v11.1.0
 
@@ -10,11 +10,17 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;💼 Hospedagem na [Vercel](https://vercel.com/)
 
-🌎 Link da aplicação: https://customers-web.vercel.app
+## 🎨 Modelagem Arquitetural
+![Modelagem Arquitetural](https://user-images.githubusercontent.com/22556132/119341129-cead8b80-bc69-11eb-9fdc-f682bd5eff43.png)
 
-👨‍🚀 Para visualizar o Back-End [clique aqui](https://github.com/luizhc/customers-api)
 
-## Instalação
+## 🌎 Visualização
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;👩‍🚀 Link da aplicação: https://customers-web.vercel.app
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔥 Para visualizar o Back-End [clique aqui](https://github.com/luizhc/customers-api)
+
+## 🔧 Instalação
 
 É necessário os seguintes programas instalados:
 
@@ -23,7 +29,7 @@
 - Interpretador [Node.js](https://nodejs.org/) para rodar a aplicação;
 - Editor de código-fonte, sugiro o [VS Code](https://code.visualstudio.com/).
 
-## Configuração / Inicialização
+## 🔌 Configuração / Inicialização
 
 - Após clonar o projeto em seu computador com o comando `git clone https://github.com/luizhc/customers-web.git`;
 - Vá até a pasta do projeto e instale as depêndencias com o comando `npm install`;
